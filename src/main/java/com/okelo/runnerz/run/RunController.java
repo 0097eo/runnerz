@@ -1,10 +1,8 @@
 package com.okelo.runnerz.run;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -32,12 +30,29 @@ public class RunController {
         if(byId.isPresent()) {
             return byId.get();
         } else {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND,
-                    "Run not found"
-            );
-
+            throw new RunNotFoundException();
         }
+    }
+
+    //Post
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    void create(@Valid @RequestBody Run run){
+        runRepository.create(run);
+    }
+
+    //Update
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/{id}")
+    void update(@Valid @RequestBody Run run, @PathVariable Integer id){
+        runRepository.update(run, id);
+    }
+
+    //Delete
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable Integer id){
+        runRepository.delete(id);
     }
 
 

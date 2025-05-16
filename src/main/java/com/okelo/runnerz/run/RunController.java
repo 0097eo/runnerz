@@ -43,9 +43,9 @@ public class RunController {
 
     //Update
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/{id}")
-    void update(@Valid @RequestBody Run run, @PathVariable Integer id){
-        runRepository.update(run, id);
+    @PutMapping("/{id}")
+    void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
+        runRepository.update(run,id);
     }
 
     //Delete
@@ -53,6 +53,10 @@ public class RunController {
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id){
         runRepository.delete(id);
+    }
+
+    List<Run> findByLocation(@RequestParam String location) {
+        return runRepository.findByLocation(location);
     }
 
 

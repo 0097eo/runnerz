@@ -11,15 +11,15 @@ public record Run(
         Integer id,
         @NotEmpty
         String title,
-        LocalDateTime startTime,
+        LocalDateTime start_time,
         @Future
-        LocalDateTime endTime,
+        LocalDateTime end_time,
         @Positive
         Integer miles,
         Location location
 ) {
     public Run {
-        if (id == null || title == null || startTime == null || endTime == null || miles == null || location == null) {
+        if (title == null || start_time == null || end_time == null || miles == null || location == null) {
             throw new IllegalArgumentException("All fields must be provided");
         }
         if (miles <= 0) {

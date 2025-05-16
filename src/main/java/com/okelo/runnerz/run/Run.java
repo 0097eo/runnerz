@@ -15,14 +15,14 @@ public record Run(
         @Future
         LocalDateTime endTime,
         @Positive
-        Integer distance,
+        Integer miles,
         Location location
 ) {
     public Run {
-        if (id == null || title == null || startTime == null || endTime == null || distance == null || location == null) {
+        if (id == null || title == null || startTime == null || endTime == null || miles == null || location == null) {
             throw new IllegalArgumentException("All fields must be provided");
         }
-        if (distance <= 0) {
+        if (miles <= 0) {
             throw new IllegalArgumentException("Distance must be greater than zero");
         }
     }

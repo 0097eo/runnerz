@@ -1,5 +1,6 @@
 package com.okelo.runnerz.run;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 
 @Repository()
+@Primary
 public class JdbcRunRepository implements RunRepository {
 
     private final JdbcClient jdbcClient;
